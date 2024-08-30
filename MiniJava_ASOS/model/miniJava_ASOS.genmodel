@@ -1,0 +1,292 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<genmodel:GenModel xmi:version="2.0" xmlns:xmi="http://www.omg.org/XMI" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+    xmlns:ecore="http://www.eclipse.org/emf/2002/Ecore" xmlns:genmodel="http://www.eclipse.org/emf/2002/GenModel"
+    modelDirectory="/MiniJava_ASOS/src-gen" creationIcons="false" editDirectory="/MiniJava_ASOS.edit/src-gen"
+    editorDirectory="/MiniJava_ASOS.editor/src-gen" modelPluginID="MiniJava_ASOS"
+    templateDirectory="MiniJava_ASOS/templates" dynamicTemplates="true" modelName="MiniJava_ASOS"
+    rootExtendsClass="org.eclipse.emf.ecore.impl.MinimalEObjectImpl$Container" codeFormatting="true"
+    importerID="org.eclipse.emf.importer.ecore" complianceLevel="11.0" copyrightFields="false"
+    operationReflection="true" importOrganizing="true">
+  <foreignModel>miniJava_ASOS.ecore</foreignModel>
+  <testsDirectory xsi:nil="true"/>
+  <genPackages prefix="MiniJava_ASOS" disposableProviderFactory="true" ecorePackage="miniJava_ASOS.ecore#/">
+    <genEnums typeSafeEnumCompatible="false" ecoreEnum="miniJava_ASOS.ecore#//AccessLevel">
+      <genEnumLiterals ecoreEnumLiteral="miniJava_ASOS.ecore#//AccessLevel/PRIVATE"/>
+      <genEnumLiterals ecoreEnumLiteral="miniJava_ASOS.ecore#//AccessLevel/PROTECTED"/>
+      <genEnumLiterals ecoreEnumLiteral="miniJava_ASOS.ecore#//AccessLevel/PUBLIC"/>
+    </genEnums>
+    <genClasses ecoreClass="miniJava_ASOS.ecore#//Program">
+      <genFeatures createChild="false" ecoreFeature="ecore:EAttribute miniJava_ASOS.ecore#//Program/name"/>
+      <genFeatures property="None" children="true" createChild="true" ecoreFeature="ecore:EReference miniJava_ASOS.ecore#//Program/imports"/>
+      <genFeatures property="None" children="true" createChild="true" ecoreFeature="ecore:EReference miniJava_ASOS.ecore#//Program/classes"/>
+      <genFeatures notify="false" createChild="false" propertySortChoices="true" ecoreFeature="ecore:EReference miniJava_ASOS.ecore#//Program/state"/>
+    </genClasses>
+    <genClasses ecoreClass="miniJava_ASOS.ecore#//Import">
+      <genFeatures createChild="false" ecoreFeature="ecore:EAttribute miniJava_ASOS.ecore#//Import/importedNamespace"/>
+    </genClasses>
+    <genClasses ecoreClass="miniJava_ASOS.ecore#//TypeDeclaration">
+      <genFeatures createChild="false" ecoreFeature="ecore:EAttribute miniJava_ASOS.ecore#//TypeDeclaration/accessLevel"/>
+      <genFeatures notify="false" createChild="false" propertySortChoices="true" ecoreFeature="ecore:EReference miniJava_ASOS.ecore#//TypeDeclaration/implementz"/>
+      <genFeatures property="None" children="true" createChild="true" ecoreFeature="ecore:EReference miniJava_ASOS.ecore#//TypeDeclaration/members"/>
+    </genClasses>
+    <genClasses ecoreClass="miniJava_ASOS.ecore#//Clazz">
+      <genFeatures createChild="false" ecoreFeature="ecore:EAttribute miniJava_ASOS.ecore#//Clazz/isabstract"/>
+      <genFeatures notify="false" createChild="false" propertySortChoices="true" ecoreFeature="ecore:EReference miniJava_ASOS.ecore#//Clazz/superClass"/>
+    </genClasses>
+    <genClasses ecoreClass="miniJava_ASOS.ecore#//Interface"/>
+    <genClasses ecoreClass="miniJava_ASOS.ecore#//Member">
+      <genFeatures createChild="false" ecoreFeature="ecore:EAttribute miniJava_ASOS.ecore#//Member/access"/>
+    </genClasses>
+    <genClasses ecoreClass="miniJava_ASOS.ecore#//Method">
+      <genFeatures createChild="false" ecoreFeature="ecore:EAttribute miniJava_ASOS.ecore#//Method/isabstract"/>
+      <genFeatures createChild="false" ecoreFeature="ecore:EAttribute miniJava_ASOS.ecore#//Method/isstatic"/>
+      <genFeatures property="None" children="true" createChild="true" ecoreFeature="ecore:EReference miniJava_ASOS.ecore#//Method/params"/>
+      <genFeatures property="None" children="true" createChild="true" ecoreFeature="ecore:EReference miniJava_ASOS.ecore#//Method/body"/>
+    </genClasses>
+    <genClasses ecoreClass="miniJava_ASOS.ecore#//Parameter"/>
+    <genClasses ecoreClass="miniJava_ASOS.ecore#//Field">
+      <genFeatures property="None" children="true" createChild="true" ecoreFeature="ecore:EReference miniJava_ASOS.ecore#//Field/defaultValue"/>
+    </genClasses>
+    <genClasses ecoreClass="miniJava_ASOS.ecore#//Block">
+      <genFeatures property="None" children="true" createChild="true" ecoreFeature="ecore:EReference miniJava_ASOS.ecore#//Block/statements"/>
+    </genClasses>
+    <genClasses ecoreClass="miniJava_ASOS.ecore#//Statement"/>
+    <genClasses ecoreClass="miniJava_ASOS.ecore#//PrintStatement">
+      <genFeatures property="None" children="true" createChild="true" ecoreFeature="ecore:EReference miniJava_ASOS.ecore#//PrintStatement/expression"/>
+    </genClasses>
+    <genClasses ecoreClass="miniJava_ASOS.ecore#//LoadImage">
+      <genFeatures property="None" children="true" createChild="true" ecoreFeature="ecore:EReference miniJava_ASOS.ecore#//LoadImage/path"/>
+    </genClasses>
+    <genClasses ecoreClass="miniJava_ASOS.ecore#//WriteImage">
+      <genFeatures property="None" children="true" createChild="true" ecoreFeature="ecore:EReference miniJava_ASOS.ecore#//WriteImage/path"/>
+      <genFeatures property="None" children="true" createChild="true" ecoreFeature="ecore:EReference miniJava_ASOS.ecore#//WriteImage/image"/>
+    </genClasses>
+    <genClasses ecoreClass="miniJava_ASOS.ecore#//Return">
+      <genFeatures property="None" children="true" createChild="true" ecoreFeature="ecore:EReference miniJava_ASOS.ecore#//Return/expression"/>
+    </genClasses>
+    <genClasses ecoreClass="miniJava_ASOS.ecore#//IfStatement">
+      <genFeatures property="None" children="true" createChild="true" ecoreFeature="ecore:EReference miniJava_ASOS.ecore#//IfStatement/expression"/>
+      <genFeatures property="None" children="true" createChild="true" ecoreFeature="ecore:EReference miniJava_ASOS.ecore#//IfStatement/thenBlock"/>
+      <genFeatures property="None" children="true" createChild="true" ecoreFeature="ecore:EReference miniJava_ASOS.ecore#//IfStatement/elseBlock"/>
+    </genClasses>
+    <genClasses ecoreClass="miniJava_ASOS.ecore#//WhileStatement">
+      <genFeatures property="None" children="true" createChild="true" ecoreFeature="ecore:EReference miniJava_ASOS.ecore#//WhileStatement/condition"/>
+      <genFeatures property="None" children="true" createChild="true" ecoreFeature="ecore:EReference miniJava_ASOS.ecore#//WhileStatement/block"/>
+    </genClasses>
+    <genClasses ecoreClass="miniJava_ASOS.ecore#//ForStatement">
+      <genFeatures property="None" children="true" createChild="true" ecoreFeature="ecore:EReference miniJava_ASOS.ecore#//ForStatement/declaration"/>
+      <genFeatures property="None" children="true" createChild="true" ecoreFeature="ecore:EReference miniJava_ASOS.ecore#//ForStatement/condition"/>
+      <genFeatures property="None" children="true" createChild="true" ecoreFeature="ecore:EReference miniJava_ASOS.ecore#//ForStatement/progression"/>
+      <genFeatures property="None" children="true" createChild="true" ecoreFeature="ecore:EReference miniJava_ASOS.ecore#//ForStatement/block"/>
+    </genClasses>
+    <genClasses ecoreClass="miniJava_ASOS.ecore#//TypeRef"/>
+    <genClasses ecoreClass="miniJava_ASOS.ecore#//SingleTypeRef"/>
+    <genClasses ecoreClass="miniJava_ASOS.ecore#//ClassRef">
+      <genFeatures notify="false" createChild="false" propertySortChoices="true" ecoreFeature="ecore:EReference miniJava_ASOS.ecore#//ClassRef/referencedClass"/>
+    </genClasses>
+    <genClasses ecoreClass="miniJava_ASOS.ecore#//NamedElement">
+      <genFeatures createChild="false" ecoreFeature="ecore:EAttribute miniJava_ASOS.ecore#//NamedElement/name"/>
+    </genClasses>
+    <genClasses ecoreClass="miniJava_ASOS.ecore#//TypedDeclaration">
+      <genFeatures property="None" children="true" createChild="true" ecoreFeature="ecore:EReference miniJava_ASOS.ecore#//TypedDeclaration/typeRef"/>
+    </genClasses>
+    <genClasses ecoreClass="miniJava_ASOS.ecore#//Symbol"/>
+    <genClasses ecoreClass="miniJava_ASOS.ecore#//VariableDeclaration"/>
+    <genClasses ecoreClass="miniJava_ASOS.ecore#//Assignment">
+      <genFeatures property="None" children="true" createChild="true" ecoreFeature="ecore:EReference miniJava_ASOS.ecore#//Assignment/assignee"/>
+      <genFeatures property="None" children="true" createChild="true" ecoreFeature="ecore:EReference miniJava_ASOS.ecore#//Assignment/value"/>
+    </genClasses>
+    <genClasses ecoreClass="miniJava_ASOS.ecore#//Assignee"/>
+    <genClasses ecoreClass="miniJava_ASOS.ecore#//Expression"/>
+    <genClasses ecoreClass="miniJava_ASOS.ecore#//ArrayTypeRef">
+      <genFeatures property="None" children="true" createChild="true" ecoreFeature="ecore:EReference miniJava_ASOS.ecore#//ArrayTypeRef/typeRef"/>
+    </genClasses>
+    <genClasses ecoreClass="miniJava_ASOS.ecore#//IntegerTypeRef"/>
+    <genClasses ecoreClass="miniJava_ASOS.ecore#//BooleanTypeRef"/>
+    <genClasses ecoreClass="miniJava_ASOS.ecore#//StringTypeRef"/>
+    <genClasses ecoreClass="miniJava_ASOS.ecore#//VoidTypeRef"/>
+    <genClasses ecoreClass="miniJava_ASOS.ecore#//Or"/>
+    <genClasses ecoreClass="miniJava_ASOS.ecore#//And"/>
+    <genClasses ecoreClass="miniJava_ASOS.ecore#//Equality"/>
+    <genClasses ecoreClass="miniJava_ASOS.ecore#//Inequality"/>
+    <genClasses ecoreClass="miniJava_ASOS.ecore#//SuperiorOrEqual"/>
+    <genClasses ecoreClass="miniJava_ASOS.ecore#//InferiorOrEqual"/>
+    <genClasses ecoreClass="miniJava_ASOS.ecore#//Superior"/>
+    <genClasses ecoreClass="miniJava_ASOS.ecore#//Inferior"/>
+    <genClasses ecoreClass="miniJava_ASOS.ecore#//Plus"/>
+    <genClasses ecoreClass="miniJava_ASOS.ecore#//Minus"/>
+    <genClasses ecoreClass="miniJava_ASOS.ecore#//Multiplication"/>
+    <genClasses ecoreClass="miniJava_ASOS.ecore#//Division"/>
+    <genClasses ecoreClass="miniJava_ASOS.ecore#//ArrayAccess">
+      <genFeatures property="None" children="true" createChild="true" ecoreFeature="ecore:EReference miniJava_ASOS.ecore#//ArrayAccess/object"/>
+      <genFeatures property="None" children="true" createChild="true" ecoreFeature="ecore:EReference miniJava_ASOS.ecore#//ArrayAccess/index"/>
+    </genClasses>
+    <genClasses ecoreClass="miniJava_ASOS.ecore#//ArrayLength">
+      <genFeatures property="None" children="true" createChild="true" ecoreFeature="ecore:EReference miniJava_ASOS.ecore#//ArrayLength/array"/>
+    </genClasses>
+    <genClasses ecoreClass="miniJava_ASOS.ecore#//Not">
+      <genFeatures property="None" children="true" createChild="true" ecoreFeature="ecore:EReference miniJava_ASOS.ecore#//Not/expression"/>
+    </genClasses>
+    <genClasses ecoreClass="miniJava_ASOS.ecore#//Neg">
+      <genFeatures property="None" children="true" createChild="true" ecoreFeature="ecore:EReference miniJava_ASOS.ecore#//Neg/expression"/>
+    </genClasses>
+    <genClasses ecoreClass="miniJava_ASOS.ecore#//FieldAccess">
+      <genFeatures property="None" children="true" createChild="true" ecoreFeature="ecore:EReference miniJava_ASOS.ecore#//FieldAccess/receiver"/>
+      <genFeatures notify="false" createChild="false" propertySortChoices="true" ecoreFeature="ecore:EReference miniJava_ASOS.ecore#//FieldAccess/field"/>
+    </genClasses>
+    <genClasses ecoreClass="miniJava_ASOS.ecore#//MethodCall">
+      <genFeatures property="None" children="true" createChild="true" ecoreFeature="ecore:EReference miniJava_ASOS.ecore#//MethodCall/receiver"/>
+      <genFeatures notify="false" createChild="false" propertySortChoices="true" ecoreFeature="ecore:EReference miniJava_ASOS.ecore#//MethodCall/method"/>
+      <genFeatures property="None" children="true" createChild="true" ecoreFeature="ecore:EReference miniJava_ASOS.ecore#//MethodCall/args"/>
+    </genClasses>
+    <genClasses ecoreClass="miniJava_ASOS.ecore#//StringConstant">
+      <genFeatures createChild="false" ecoreFeature="ecore:EAttribute miniJava_ASOS.ecore#//StringConstant/value"/>
+    </genClasses>
+    <genClasses ecoreClass="miniJava_ASOS.ecore#//IntConstant">
+      <genFeatures createChild="false" ecoreFeature="ecore:EAttribute miniJava_ASOS.ecore#//IntConstant/value"/>
+    </genClasses>
+    <genClasses ecoreClass="miniJava_ASOS.ecore#//BoolConstant">
+      <genFeatures createChild="false" ecoreFeature="ecore:EAttribute miniJava_ASOS.ecore#//BoolConstant/value"/>
+    </genClasses>
+    <genClasses ecoreClass="miniJava_ASOS.ecore#//This"/>
+    <genClasses ecoreClass="miniJava_ASOS.ecore#//Super"/>
+    <genClasses ecoreClass="miniJava_ASOS.ecore#//Null"/>
+    <genClasses ecoreClass="miniJava_ASOS.ecore#//NewObject">
+      <genFeatures notify="false" createChild="false" propertySortChoices="true" ecoreFeature="ecore:EReference miniJava_ASOS.ecore#//NewObject/type"/>
+      <genFeatures property="None" children="true" createChild="true" ecoreFeature="ecore:EReference miniJava_ASOS.ecore#//NewObject/args"/>
+    </genClasses>
+    <genClasses ecoreClass="miniJava_ASOS.ecore#//NewArray">
+      <genFeatures property="None" children="true" createChild="true" ecoreFeature="ecore:EReference miniJava_ASOS.ecore#//NewArray/type"/>
+      <genFeatures property="None" children="true" createChild="true" ecoreFeature="ecore:EReference miniJava_ASOS.ecore#//NewArray/size"/>
+    </genClasses>
+    <genClasses ecoreClass="miniJava_ASOS.ecore#//SymbolRef">
+      <genFeatures notify="false" createChild="false" propertySortChoices="true" ecoreFeature="ecore:EReference miniJava_ASOS.ecore#//SymbolRef/symbol"/>
+    </genClasses>
+    <genClasses ecoreClass="miniJava_ASOS.ecore#//Modulo"/>
+    <genClasses ecoreClass="miniJava_ASOS.ecore#//Sqrt">
+      <genFeatures property="None" children="true" createChild="true" ecoreFeature="ecore:EReference miniJava_ASOS.ecore#//Sqrt/expression"/>
+    </genClasses>
+    <genClasses image="false" ecoreClass="miniJava_ASOS.ecore#//BinOp">
+      <genFeatures property="None" children="true" createChild="true" ecoreFeature="ecore:EReference miniJava_ASOS.ecore#//BinOp/left"/>
+      <genFeatures property="None" children="true" createChild="true" ecoreFeature="ecore:EReference miniJava_ASOS.ecore#//BinOp/right"/>
+    </genClasses>
+    <nestedGenPackages prefix="Sd" disposableProviderFactory="true" ecorePackage="miniJava_ASOS.ecore#//sd">
+      <genClasses ecoreClass="miniJava_ASOS.ecore#//sd/Context">
+        <genFeatures notify="false" createChild="false" propertySortChoices="true"
+            ecoreFeature="ecore:EReference miniJava_ASOS.ecore#//sd/Context/parent"/>
+        <genFeatures property="None" children="true" createChild="true" ecoreFeature="ecore:EReference miniJava_ASOS.ecore#//sd/Context/bindings"/>
+      </genClasses>
+      <genClasses ecoreClass="miniJava_ASOS.ecore#//sd/Value"/>
+      <genClasses ecoreClass="miniJava_ASOS.ecore#//sd/IntegerValue">
+        <genFeatures createChild="false" ecoreFeature="ecore:EAttribute miniJava_ASOS.ecore#//sd/IntegerValue/value"/>
+      </genClasses>
+      <genClasses ecoreClass="miniJava_ASOS.ecore#//sd/SymbolBinding">
+        <genFeatures property="None" children="true" createChild="true" ecoreFeature="ecore:EReference miniJava_ASOS.ecore#//sd/SymbolBinding/value"/>
+        <genFeatures notify="false" createChild="false" propertySortChoices="true"
+            ecoreFeature="ecore:EReference miniJava_ASOS.ecore#//sd/SymbolBinding/symbol"/>
+      </genClasses>
+      <genClasses ecoreClass="miniJava_ASOS.ecore#//sd/FieldBinding">
+        <genFeatures notify="false" createChild="false" propertySortChoices="true"
+            ecoreFeature="ecore:EReference miniJava_ASOS.ecore#//sd/FieldBinding/field"/>
+        <genFeatures property="None" children="true" createChild="true" ecoreFeature="ecore:EReference miniJava_ASOS.ecore#//sd/FieldBinding/value"/>
+      </genClasses>
+      <genClasses ecoreClass="miniJava_ASOS.ecore#//sd/StringValue">
+        <genFeatures createChild="false" ecoreFeature="ecore:EAttribute miniJava_ASOS.ecore#//sd/StringValue/value"/>
+      </genClasses>
+      <genClasses ecoreClass="miniJava_ASOS.ecore#//sd/BooleanValue">
+        <genFeatures createChild="false" ecoreFeature="ecore:EAttribute miniJava_ASOS.ecore#//sd/BooleanValue/value"/>
+      </genClasses>
+      <genClasses ecoreClass="miniJava_ASOS.ecore#//sd/State">
+        <genFeatures property="None" children="true" createChild="true" ecoreFeature="ecore:EReference miniJava_ASOS.ecore#//sd/State/frame"/>
+        <genFeatures property="None" children="true" createChild="true" ecoreFeature="ecore:EReference miniJava_ASOS.ecore#//sd/State/objectsHeap"/>
+        <genFeatures property="None" children="true" createChild="true" ecoreFeature="ecore:EReference miniJava_ASOS.ecore#//sd/State/arraysHeap"/>
+        <genOperations ecoreOperation="miniJava_ASOS.ecore#//sd/State/getSymbolValue">
+          <genParameters ecoreParameter="miniJava_ASOS.ecore#//sd/State/getSymbolValue/assignee"/>
+        </genOperations>
+        <genOperations ecoreOperation="miniJava_ASOS.ecore#//sd/State/setSymbolValue">
+          <genParameters ecoreParameter="miniJava_ASOS.ecore#//sd/State/setSymbolValue/assignee"/>
+          <genParameters ecoreParameter="miniJava_ASOS.ecore#//sd/State/setSymbolValue/value"/>
+        </genOperations>
+        <genOperations ecoreOperation="miniJava_ASOS.ecore#//sd/State/pushContext"/>
+        <genOperations ecoreOperation="miniJava_ASOS.ecore#//sd/State/popContext"/>
+        <genOperations ecoreOperation="miniJava_ASOS.ecore#//sd/State/pushFrame">
+          <genParameters ecoreParameter="miniJava_ASOS.ecore#//sd/State/pushFrame/instance"/>
+        </genOperations>
+        <genOperations ecoreOperation="miniJava_ASOS.ecore#//sd/State/popFrame"/>
+        <genOperations ecoreOperation="miniJava_ASOS.ecore#//sd/State/println">
+          <genParameters ecoreParameter="miniJava_ASOS.ecore#//sd/State/println/toPrint"/>
+        </genOperations>
+        <genOperations ecoreOperation="miniJava_ASOS.ecore#//sd/State/fillArray">
+          <genParameters ecoreParameter="miniJava_ASOS.ecore#//sd/State/fillArray/instance"/>
+          <genParameters ecoreParameter="miniJava_ASOS.ecore#//sd/State/fillArray/type"/>
+          <genParameters ecoreParameter="miniJava_ASOS.ecore#//sd/State/fillArray/size"/>
+        </genOperations>
+        <genOperations ecoreOperation="miniJava_ASOS.ecore#//sd/State/accessArray">
+          <genParameters ecoreParameter="miniJava_ASOS.ecore#//sd/State/accessArray/instance"/>
+          <genParameters ecoreParameter="miniJava_ASOS.ecore#//sd/State/accessArray/index"/>
+        </genOperations>
+        <genOperations ecoreOperation="miniJava_ASOS.ecore#//sd/State/initObject">
+          <genParameters ecoreParameter="miniJava_ASOS.ecore#//sd/State/initObject/clazz"/>
+        </genOperations>
+        <genOperations ecoreOperation="miniJava_ASOS.ecore#//sd/State/findConstructor">
+          <genParameters ecoreParameter="miniJava_ASOS.ecore#//sd/State/findConstructor/clazz"/>
+          <genParameters ecoreParameter="miniJava_ASOS.ecore#//sd/State/findConstructor/values"/>
+        </genOperations>
+        <genOperations ecoreOperation="miniJava_ASOS.ecore#//sd/State/call">
+          <genParameters ecoreParameter="miniJava_ASOS.ecore#//sd/State/call/call"/>
+        </genOperations>
+        <genOperations ecoreOperation="miniJava_ASOS.ecore#//sd/State/readImage">
+          <genParameters ecoreParameter="miniJava_ASOS.ecore#//sd/State/readImage/path"/>
+        </genOperations>
+        <genOperations ecoreOperation="miniJava_ASOS.ecore#//sd/State/writeImage">
+          <genParameters ecoreParameter="miniJava_ASOS.ecore#//sd/State/writeImage/path"/>
+          <genParameters ecoreParameter="miniJava_ASOS.ecore#//sd/State/writeImage/image"/>
+        </genOperations>
+        <genOperations ecoreOperation="miniJava_ASOS.ecore#//sd/State/findMain">
+          <genParameters ecoreParameter="miniJava_ASOS.ecore#//sd/State/findMain/classes"/>
+        </genOperations>
+        <genOperations ecoreOperation="miniJava_ASOS.ecore#//sd/State/sqrt">
+          <genParameters ecoreParameter="miniJava_ASOS.ecore#//sd/State/sqrt/n"/>
+        </genOperations>
+      </genClasses>
+      <genClasses ecoreClass="miniJava_ASOS.ecore#//sd/Frame">
+        <genFeatures notify="false" createChild="false" propertySortChoices="true"
+            ecoreFeature="ecore:EReference miniJava_ASOS.ecore#//sd/Frame/instance"/>
+        <genFeatures notify="false" createChild="false" propertySortChoices="true"
+            ecoreFeature="ecore:EReference miniJava_ASOS.ecore#//sd/Frame/parent"/>
+        <genFeatures property="None" children="true" createChild="true" ecoreFeature="ecore:EReference miniJava_ASOS.ecore#//sd/Frame/context"/>
+      </genClasses>
+      <genClasses ecoreClass="miniJava_ASOS.ecore#//sd/NullValue"/>
+      <genClasses ecoreClass="miniJava_ASOS.ecore#//sd/ObjectInstance">
+        <genFeatures property="None" children="true" createChild="true" ecoreFeature="ecore:EReference miniJava_ASOS.ecore#//sd/ObjectInstance/fieldbindings"/>
+        <genFeatures notify="false" createChild="false" propertySortChoices="true"
+            ecoreFeature="ecore:EReference miniJava_ASOS.ecore#//sd/ObjectInstance/type"/>
+      </genClasses>
+      <genClasses ecoreClass="miniJava_ASOS.ecore#//sd/ArrayInstance">
+        <genFeatures createChild="false" ecoreFeature="ecore:EAttribute miniJava_ASOS.ecore#//sd/ArrayInstance/size"/>
+        <genFeatures property="None" children="true" createChild="true" ecoreFeature="ecore:EReference miniJava_ASOS.ecore#//sd/ArrayInstance/value"/>
+      </genClasses>
+      <genClasses ecoreClass="miniJava_ASOS.ecore#//sd/ObjectRefValue">
+        <genFeatures notify="false" createChild="false" propertySortChoices="true"
+            ecoreFeature="ecore:EReference miniJava_ASOS.ecore#//sd/ObjectRefValue/instance"/>
+      </genClasses>
+      <genClasses ecoreClass="miniJava_ASOS.ecore#//sd/ArrayRefValue">
+        <genFeatures notify="false" createChild="false" propertySortChoices="true"
+            ecoreFeature="ecore:EReference miniJava_ASOS.ecore#//sd/ArrayRefValue/instance"/>
+      </genClasses>
+      <genClasses ecoreClass="miniJava_ASOS.ecore#//sd/RuntimeError"/>
+      <genClasses ecoreClass="miniJava_ASOS.ecore#//sd/ReturnValue">
+        <genFeatures notify="false" createChild="false" propertySortChoices="true"
+            ecoreFeature="ecore:EReference miniJava_ASOS.ecore#//sd/ReturnValue/value"/>
+      </genClasses>
+      <genClasses ecoreClass="miniJava_ASOS.ecore#//sd/Call">
+        <genFeatures notify="false" createChild="false" propertySortChoices="true"
+            ecoreFeature="ecore:EReference miniJava_ASOS.ecore#//sd/Call/instance"/>
+        <genFeatures notify="false" createChild="false" propertySortChoices="true"
+            ecoreFeature="ecore:EReference miniJava_ASOS.ecore#//sd/Call/method"/>
+        <genFeatures notify="false" createChild="false" propertySortChoices="true"
+            ecoreFeature="ecore:EAttribute miniJava_ASOS.ecore#//sd/Call/values"/>
+      </genClasses>
+    </nestedGenPackages>
+  </genPackages>
+</genmodel:GenModel>

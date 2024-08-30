@@ -1,0 +1,25 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<?eclipse version="3.0"?>
+
+<!--
+-->
+
+<plugin>
+
+   <extension point="org.eclipse.emf.ecore.generated_package">
+      <!-- @generated miniJava_ASOS -->
+      <package
+            uri="http://www.example.org/miniJava_ASOS"
+            class="miniJava_ASOS.MiniJava_ASOSPackage"
+            genModel="model/miniJava_ASOS.genmodel"/>
+   </extension>
+
+   <extension point="org.eclipse.emf.ecore.generated_package">
+      <!-- @generated miniJava_ASOS -->
+      <package
+            uri="http://www.example.org/miniJava_ASOS/sd"
+            class="miniJava_ASOS.sd.SdPackage"
+            genModel="model/miniJava_ASOS.genmodel"/>
+   </extension>
+
+</plugin>

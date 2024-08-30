@@ -1,0 +1,51 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<genmodel:GenModel xmi:version="2.0" xmlns:xmi="http://www.omg.org/XMI" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+    xmlns:ecore="http://www.eclipse.org/emf/2002/Ecore" xmlns:genmodel="http://www.eclipse.org/emf/2002/GenModel"
+    modelDirectory="/html_ASOS/src-gen" creationIcons="false" editDirectory="/html_ASOS.edit/src-gen"
+    editorDirectory="/html_ASOS.editor/src-gen" modelPluginID="html_ASOS" modelName="Html_ASOS"
+    rootExtendsClass="org.eclipse.emf.ecore.impl.MinimalEObjectImpl$Container" codeFormatting="true"
+    importerID="org.eclipse.emf.importer.ecore" complianceLevel="5.0" copyrightFields="false"
+    operationReflection="true" importOrganizing="true">
+  <foreignModel>html_ASOS.ecore</foreignModel>
+  <testsDirectory xsi:nil="true"/>
+  <genPackages prefix="Html_ASOS" disposableProviderFactory="true" ecorePackage="html_ASOS.ecore#/">
+    <genEnums typeSafeEnumCompatible="false" ecoreEnum="html_ASOS.ecore#//AttributeType">
+      <genEnumLiterals ecoreEnumLiteral="html_ASOS.ecore#//AttributeType/UNQUOTED"/>
+      <genEnumLiterals ecoreEnumLiteral="html_ASOS.ecore#//AttributeType/SIMPLE_QUOTED"/>
+      <genEnumLiterals ecoreEnumLiteral="html_ASOS.ecore#//AttributeType/DOUBLE_QUOTED"/>
+    </genEnums>
+    <genClasses ecoreClass="html_ASOS.ecore#//HTMLNodeRoot">
+      <genFeatures property="None" children="true" createChild="true" ecoreFeature="ecore:EReference html_ASOS.ecore#//HTMLNodeRoot/root"/>
+    </genClasses>
+    <genClasses ecoreClass="html_ASOS.ecore#//HTMLNodeBase"/>
+    <genClasses ecoreClass="html_ASOS.ecore#//HTMLNodeText">
+      <genFeatures createChild="false" ecoreFeature="ecore:EAttribute html_ASOS.ecore#//HTMLNodeText/content"/>
+    </genClasses>
+    <genClasses ecoreClass="html_ASOS.ecore#//HTMLNodeBlockTag">
+      <genFeatures property="None" children="true" createChild="true" ecoreFeature="ecore:EReference html_ASOS.ecore#//HTMLNodeBlockTag/children"/>
+    </genClasses>
+    <genClasses ecoreClass="html_ASOS.ecore#//HTMLNodeBaseTag">
+      <genFeatures property="None" children="true" createChild="true" ecoreFeature="ecore:EReference html_ASOS.ecore#//HTMLNodeBaseTag/attributes"/>
+      <genFeatures createChild="false" ecoreFeature="ecore:EAttribute html_ASOS.ecore#//HTMLNodeBaseTag/tag"/>
+    </genClasses>
+    <genClasses ecoreClass="html_ASOS.ecore#//HTMLNodeAttribute">
+      <genFeatures createChild="false" ecoreFeature="ecore:EAttribute html_ASOS.ecore#//HTMLNodeAttribute/name"/>
+      <genFeatures createChild="false" ecoreFeature="ecore:EAttribute html_ASOS.ecore#//HTMLNodeAttribute/value"/>
+      <genFeatures createChild="false" ecoreFeature="ecore:EAttribute html_ASOS.ecore#//HTMLNodeAttribute/type"/>
+    </genClasses>
+    <genClasses ecoreClass="html_ASOS.ecore#//HTMLNodeEmptyTag"/>
+    <nestedGenPackages prefix="Sd" disposableProviderFactory="true" ecorePackage="html_ASOS.ecore#//sd">
+      <genClasses ecoreClass="html_ASOS.ecore#//sd/State">
+        <genFeatures notify="false" createChild="false" propertySortChoices="true"
+            ecoreFeature="ecore:EReference html_ASOS.ecore#//sd/State/context"/>
+        <genOperations ecoreOperation="html_ASOS.ecore#//sd/State/pushContext"/>
+        <genOperations ecoreOperation="html_ASOS.ecore#//sd/State/popContext"/>
+      </genClasses>
+      <genClasses ecoreClass="html_ASOS.ecore#//sd/Context">
+        <genFeatures notify="false" createChild="false" propertySortChoices="true"
+            ecoreFeature="ecore:EReference html_ASOS.ecore#//sd/Context/parent"/>
+        <genFeatures createChild="false" ecoreFeature="ecore:EAttribute html_ASOS.ecore#//sd/Context/buffer"/>
+      </genClasses>
+    </nestedGenPackages>
+  </genPackages>
+</genmodel:GenModel>

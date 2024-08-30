@@ -1,0 +1,575 @@
+model "platform=/resource/MiniJava_ASOS/model/miniJava_ASOS.ecore" with miniJava_ASOS.sd
+context miniJava_ASOS.sd.State
+
+rule program,
+	miniJava_ASOS.Program(name, imports,classes)
+	->
+	main
+bind
+	main = context->miniJava_ASOS.sd.State.findMain(self.classes)
+	
+rule method_body,
+	miniJava_ASOS.Method(name,type,access,abstract,static,params,body)
+	->
+	body 
+	
+// CONSTANT
+rule IntConst,
+	miniJava_ASOS.IntConstant(val) -> miniJava_ASOS.sd.IntegerValue(val)
+
+rule BoolConst,
+	miniJava_ASOS.BoolConstant(val) -> miniJava_ASOS.sd.BooleanValue(val)
+	
+rule StringConst,
+	miniJava_ASOS.StringConstant(val) -> miniJava_ASOS.sd.StringValue(val)
+	
+rule nullvalue,
+	miniJava_ASOS.Null() -> miniJava_ASOS.sd.NullValue()
+	
+rule thisvalue,
+	miniJava_ASOS.This() -> instref
+bind
+	inst = context.frame.instance;
+	instref = miniJava_ASOS.sd.ObjectRefValue(inst)
+	
+// TODO : Super
+
+// EXPRESSION
+rule BinOp_lhs,
+    miniJava_ASOS.BinOp(lhs, rhs) -> miniJava_ASOS.BinOp(newlhs, rhs)
+resolve
+	lhs -> newlhs
+	
+rule BinOp_rhs,
+    miniJava_ASOS.BinOp(miniJava_ASOS.sd.Value(), rhs) 
+    -> 
+    miniJava_ASOS.BinOp(miniJava_ASOS.sd.Value(), newrhs)
+resolve
+	rhs -> newrhs
+	
+
+
+
+rule plus_string,
+    miniJava_ASOS.Plus(miniJava_ASOS.sd.StringValue(n1), miniJava_ASOS.sd.StringValue(n2)) 
+    -> 
+    miniJava_ASOS.sd.StringValue(n)
+bind
+	n = n1 + n2
+	
+	
+
+rule plus_int,
+    miniJava_ASOS.Plus(miniJava_ASOS.sd.IntegerValue(n1), miniJava_ASOS.sd.IntegerValue(n2)) 
+    -> 
+    miniJava_ASOS.sd.IntegerValue(n)
+bind
+	n = n1 + n2
+	
+rule minus_int,
+    miniJava_ASOS.Minus(miniJava_ASOS.sd.IntegerValue(n1), miniJava_ASOS.sd.IntegerValue(n2)) 
+    -> 
+    miniJava_ASOS.sd.IntegerValue(n)
+bind
+	n = n1 - n2
+	
+rule mult_int,
+    miniJava_ASOS.Multiplication(miniJava_ASOS.sd.IntegerValue(n1), miniJava_ASOS.sd.IntegerValue(n2)) 
+    -> 
+    miniJava_ASOS.sd.IntegerValue(n)
+bind
+	n = n1 * n2
+	
+rule div_int,
+    miniJava_ASOS.Division(miniJava_ASOS.sd.IntegerValue(n1), miniJava_ASOS.sd.IntegerValue(n2)) 
+    -> 
+    miniJava_ASOS.sd.IntegerValue(n)
+where
+	n2 != 0
+bind
+	n = n1 / n2
+	
+rule div_int_error,
+    miniJava_ASOS.Division(miniJava_ASOS.sd.IntegerValue(n1), miniJava_ASOS.sd.IntegerValue(n2)) 
+    -> 
+    termination miniJava_ASOS.sd.RuntimeError()
+where
+	n2 == 0
+	
+rule neg_expr,
+    miniJava_ASOS.Neg(expr) 
+    -> 
+    miniJava_ASOS.Neg(newExpr)
+resolve
+	expr -> newExpr
+
+rule neg_done,
+    miniJava_ASOS.Neg(miniJava_ASOS.sd.IntegerValue(value)) 
+    -> 
+    miniJava_ASOS.sd.IntegerValue(negValue)
+bind
+	negValue = -value
+	
+rule sqrt_expr,
+	miniJava_ASOS.Sqrt(n)
+	->
+	miniJava_ASOS.Sqrt(newN)
+resolve
+	n -> newN
+	
+rule sqrt,
+	miniJava_ASOS.Sqrt(miniJava_ASOS.sd.IntegerValue(integer))
+	->
+	res
+bind
+	value = context->miniJava_ASOS.sd.State.sqrt(integer);
+	res = miniJava_ASOS.sd.IntegerValue(value)
+
+
+rule not_expr,
+    miniJava_ASOS.Not(expr) 
+    -> 
+    miniJava_ASOS.Not(newExpr)
+resolve
+	expr -> newExpr
+
+rule not_done,
+    miniJava_ASOS.Not(miniJava_ASOS.sd.BooleanValue(b)) 
+    -> 
+    miniJava_ASOS.sd.BooleanValue(notB)
+bind
+	notB = ! b
+
+
+rule or,
+    miniJava_ASOS.Or(miniJava_ASOS.sd.BooleanValue(n1), miniJava_ASOS.sd.BooleanValue(n2)) 
+    -> 
+    miniJava_ASOS.sd.BooleanValue(n)
+bind
+	n = n1 || n2
+	
+rule and,
+    miniJava_ASOS.And(miniJava_ASOS.sd.BooleanValue(n1), miniJava_ASOS.sd.BooleanValue(n2)) 
+    -> 
+    miniJava_ASOS.sd.BooleanValue(n)
+bind
+	n = n1 && n2
+	
+rule equal,
+    miniJava_ASOS.Equality(miniJava_ASOS.sd.BooleanValue(n1), miniJava_ASOS.sd.BooleanValue(n2)) 
+    -> 
+    miniJava_ASOS.sd.BooleanValue(n)
+bind
+	n = n1 == n2
+	
+rule inequal,
+    miniJava_ASOS.Inequality(miniJava_ASOS.sd.BooleanValue(n1), miniJava_ASOS.sd.BooleanValue(n2)) 
+    -> 
+    miniJava_ASOS.sd.BooleanValue(n)
+bind
+	n = n1 != n2
+	
+	
+rule great_eq,
+    miniJava_ASOS.SuperiorOrEqual(miniJava_ASOS.sd.IntegerValue(n1), miniJava_ASOS.sd.IntegerValue(n2)) 
+    -> 
+    miniJava_ASOS.sd.BooleanValue(n)
+bind
+	n = n2 <= n1
+	
+rule great,
+    miniJava_ASOS.Superior(miniJava_ASOS.sd.IntegerValue(n1), miniJava_ASOS.sd.IntegerValue(n2)) 
+    -> 
+    miniJava_ASOS.sd.BooleanValue(n)
+bind
+	n = n2 < n1
+
+rule less_eq,
+    miniJava_ASOS.InferiorOrEqual(miniJava_ASOS.sd.IntegerValue(n1), miniJava_ASOS.sd.IntegerValue(n2)) 
+    -> 
+    miniJava_ASOS.sd.BooleanValue(n)
+bind
+	n = n1 <= n2
+	
+rule less,
+    miniJava_ASOS.Inferior(miniJava_ASOS.sd.IntegerValue(n1), miniJava_ASOS.sd.IntegerValue(n2)) 
+    -> 
+    miniJava_ASOS.sd.BooleanValue(n)
+bind
+	n = n1 <= n2
+	
+
+	
+
+
+rule symbol_ref,
+    miniJava_ASOS.SymbolRef(var) 
+    -> 
+    n 
+bind
+	n = context -> miniJava_ASOS.sd.State.getSymbolValue(self)
+	
+
+
+rule new_array_size,
+	miniJava_ASOS.NewArray(type, expr)
+	->
+	miniJava_ASOS.NewArray(type, newExpr)
+resolve 
+	expr -> newExpr
+	
+rule new_array_create,
+	miniJava_ASOS.NewArray(type, miniJava_ASOS.sd.IntegerValue(size))
+	->
+	arrayref
+bind
+	arrayinst = miniJava_ASOS.sd.ArrayInstance(size);
+	initarray = context->miniJava_ASOS.sd.State.fillArray(arrayinst,type,size);
+	arrayref = miniJava_ASOS.sd.ArrayRefValue(initarray)
+	
+rule array_access_ref,
+	miniJava_ASOS.ArrayAccess(array, index)
+	->
+	miniJava_ASOS.ArrayAccess(newArray, index)
+resolve
+	array -> newArray
+	
+rule array_access_index,
+	miniJava_ASOS.ArrayAccess(miniJava_ASOS.sd.ArrayRefValue(), index)
+	->
+	miniJava_ASOS.ArrayAccess(miniJava_ASOS.sd.ArrayRefValue(), newIndex)
+resolve
+	index -> newIndex
+	
+rule array_access,
+	miniJava_ASOS.ArrayAccess(miniJava_ASOS.sd.ArrayRefValue(array), miniJava_ASOS.sd.IntegerValue(index))
+	->
+	value
+bind
+	value = context-> miniJava_ASOS.sd.State.accessArray(array,index)
+	
+rule array_length_ref,
+	miniJava_ASOS.ArrayLength(array)
+	->
+	miniJava_ASOS.ArrayLength(newArray)
+resolve
+	array -> newArray
+	
+rule array_length,
+	miniJava_ASOS.ArrayLength(miniJava_ASOS.sd.ArrayRefValue(array))
+	->
+	miniJava_ASOS.sd.IntegerValue(length)
+bind
+	length = array.size
+
+
+rule new_object_init,
+	miniJava_ASOS.NewObject(type, args)
+	->
+	miniJava_ASOS.NewObject(objinst, args)
+where
+	miniJava_ASOS.Clazz() match type
+bind 
+	objinst = context->miniJava_ASOS.sd.State.initObject(type)
+
+rule new_object_args,
+	miniJava_ASOS.NewObject(miniJava_ASOS.sd.ObjectInstance(), [arg | args])
+	->
+	miniJava_ASOS.NewObject(miniJava_ASOS.sd.ObjectInstance(), [newArg | args])
+resolve 
+	arg -> newArg
+	
+rule new_object_values,
+	miniJava_ASOS.NewObject(miniJava_ASOS.sd.ObjectInstance(), [miniJava_ASOS.sd.Value() | args])
+	->
+	miniJava_ASOS.NewObject(miniJava_ASOS.sd.ObjectInstance(), args)
+	
+rule new_object_prepare,
+	miniJava_ASOS.NewObject(miniJava_ASOS.sd.ObjectInstance():o, [])
+	->
+	miniJava_ASOS.NewObject(ref, [])
+bind
+	ref = miniJava_ASOS.sd.ObjectRefValue(o)
+	
+rule new_object_constructor,
+	miniJava_ASOS.NewObject(miniJava_ASOS.sd.ObjectRefValue() : ref, values)
+	->
+	ref
+bind
+	obj = ref.instance;
+	clazz = ref.instance.type;
+	constructor = context->miniJava_ASOS.sd.State.findConstructor(clazz, values);
+	call = miniJava_ASOS.sd.Call(obj, constructor, values);
+	retVal = context->miniJava_ASOS.sd.State.call(call)
+	
+rule field_access,
+	miniJava_ASOS.FieldAccess(receiver, field)
+	->
+	val
+bind
+	val = context->miniJava_ASOS.sd.State.getSymbolValue(self)
+	
+rule method_call_init,
+	miniJava_ASOS.MethodCall(receiver, method, args)
+	->
+	miniJava_ASOS.MethodCall(realReceiver, method, args)
+resolve
+	receiver -> realReceiver
+
+rule method_call_args,
+	miniJava_ASOS.MethodCall(miniJava_ASOS.sd.ObjectRefValue(o), method, [arg | args])
+	->
+	miniJava_ASOS.MethodCall(miniJava_ASOS.sd.ObjectRefValue(o), method, [newArg | args])
+resolve 
+	arg -> newArg
+	
+rule method_call_values,
+	miniJava_ASOS.MethodCall(miniJava_ASOS.sd.ObjectRefValue(o), method, [miniJava_ASOS.sd.Value() | args])
+	->
+	miniJava_ASOS.MethodCall(miniJava_ASOS.sd.ObjectRefValue(o), method, args)
+	
+rule method_call_prepare,
+	miniJava_ASOS.MethodCall(miniJava_ASOS.sd.ObjectRefValue(o), method, [])
+	->
+	miniJava_ASOS.MethodCall(o, method, [])
+	
+rule method_call_constructor,
+	miniJava_ASOS.MethodCall(miniJava_ASOS.sd.ObjectInstance() : o, method, values)
+	->
+	retVal
+bind
+	clazz = o.type;
+	call = miniJava_ASOS.sd.Call(o, method, values);
+	retVal = context->miniJava_ASOS.sd.State.call(call)
+
+
+
+
+
+rule return_expr,
+	miniJava_ASOS.Return(expr)
+	->
+	miniJava_ASOS.Return(newExpr)
+resolve
+	expr -> newExpr
+	
+rule return_val,
+	miniJava_ASOS.Return(miniJava_ASOS.sd.Value() : val)
+	->
+	termination miniJava_ASOS.sd.ReturnValue(val)
+	
+
+rule block_eval,
+    miniJava_ASOS.Block([s | statements]) 
+    -> 
+    miniJava_ASOS.Block([newS | statements]) 
+resolve
+	s -> newS
+	
+rule block_iter,
+    miniJava_ASOS.Block([miniJava_ASOS.sd.Value() | statements]) 
+    -> 
+    miniJava_ASOS.Block(statements)
+	
+rule block_end,
+    miniJava_ASOS.Block([]) 
+    -> 
+    miniJava_ASOS.sd.NullValue()
+	
+
+// STATEMENTS
+
+rule assign_expr,
+	miniJava_ASOS.Assignment(assignee, expr)
+	->
+	miniJava_ASOS.Assignment(assignee, newExpr)
+resolve
+	expr -> newExpr
+	
+rule assign_set_symbol,
+	miniJava_ASOS.Assignment(assignee, miniJava_ASOS.sd.Value() : v)
+	->
+	miniJava_ASOS.sd.NullValue()
+bind
+	value = context -> miniJava_ASOS.sd.State.setSymbolValue(assignee, v)
+	
+rule print_expr,
+	miniJava_ASOS.PrintStatement(expr)
+	->
+	miniJava_ASOS.PrintStatement(newExpr)
+resolve
+	expr -> newExpr
+	
+rule print_send,
+	miniJava_ASOS.PrintStatement(miniJava_ASOS.sd.Value() : v)
+	->
+	miniJava_ASOS.sd.NullValue()
+IO
+	miniJava_ASOS.sd.State.println(v) on context
+
+rule if_cond,
+	miniJava_ASOS.IfStatement(cond, if, then)
+	->
+	miniJava_ASOS.IfStatement(newcond, if, then)
+resolve
+	cond -> newcond
+IO
+	miniJava_ASOS.sd.State.pushContext() on context
+
+rule if_true,
+	miniJava_ASOS.IfStatement(miniJava_ASOS.sd.BooleanValue(b), if, else)
+	->
+	miniJava_ASOS.IfStatement(miniJava_ASOS.sd.BooleanValue(b), ifRes, else)
+where
+	b == true
+resolve
+	if -> ifRes
+	
+rule if_false,
+	miniJava_ASOS.IfStatement(miniJava_ASOS.sd.BooleanValue(b), if, else)
+	->
+	miniJava_ASOS.IfStatement(miniJava_ASOS.sd.BooleanValue(b), if, elseRes)
+where
+	b == false
+resolve
+	else -> elseRes
+	
+rule if_end_if,
+	miniJava_ASOS.IfStatement(miniJava_ASOS.sd.Value(), miniJava_ASOS.sd.Value(), else)
+	->
+	miniJava_ASOS.sd.NullValue()
+IO
+	miniJava_ASOS.sd.State.popContext() on context
+	
+rule if_end_else,
+	miniJava_ASOS.IfStatement(miniJava_ASOS.sd.Value(), if, miniJava_ASOS.sd.Value())
+	->
+	miniJava_ASOS.sd.NullValue()
+IO
+	miniJava_ASOS.sd.State.popContext() on context
+
+rule loop_cond,
+	miniJava_ASOS.WhileStatement(cond, body)
+	->
+	miniJava_ASOS.WhileStatement(newcond, body)
+resolve
+	cond -> newcond
+IO
+	miniJava_ASOS.sd.State.pushContext() on context
+
+rule loop_true_exec,
+	miniJava_ASOS.WhileStatement(miniJava_ASOS.sd.BooleanValue(b), body)
+	->
+	miniJava_ASOS.WhileStatement(miniJava_ASOS.sd.BooleanValue(b), newbody)
+where
+	b == true
+resolve
+	body -> newbody
+	
+rule loop_true_done,
+	miniJava_ASOS.WhileStatement(miniJava_ASOS.sd.BooleanValue(b), miniJava_ASOS.sd.NullValue())
+	->
+	self
+where
+	b == true
+IO
+	miniJava_ASOS.sd.State.popContext() on context
+
+rule loop_false,
+	miniJava_ASOS.WhileStatement(miniJava_ASOS.sd.BooleanValue(b), body)
+	->
+	miniJava_ASOS.sd.NullValue()
+where
+	b == false
+IO
+	miniJava_ASOS.sd.State.popContext() on context
+
+
+
+rule for_decl,
+	miniJava_ASOS.ForStatement(decl, cond, prog, body)
+	->
+	miniJava_ASOS.ForStatement(newdecl, cond, prog, body)
+resolve
+	decl -> newdecl
+	
+rule for_cond,
+	miniJava_ASOS.ForStatement(miniJava_ASOS.sd.Value(), cond, prog, body)
+	->
+	miniJava_ASOS.ForStatement(miniJava_ASOS.sd.Value(), newcond, prog, body)
+resolve
+	cond -> newcond
+IO
+	miniJava_ASOS.sd.State.pushContext() on context
+
+rule for_true_exec,
+	miniJava_ASOS.ForStatement(decl, miniJava_ASOS.sd.BooleanValue(b), prog, body)
+	->
+	miniJava_ASOS.ForStatement(decl, miniJava_ASOS.sd.BooleanValue(b), prog, newbody)
+where
+	b == true
+resolve
+	body -> newbody
+IO
+	miniJava_ASOS.sd.State.popContext() on context
+	
+rule for_true_prog,
+	miniJava_ASOS.ForStatement(decl, miniJava_ASOS.sd.BooleanValue(b), prog, miniJava_ASOS.sd.NullValue())
+	->
+	miniJava_ASOS.ForStatement(decl, miniJava_ASOS.sd.BooleanValue(b), newProg, miniJava_ASOS.sd.NullValue())
+resolve
+	prog -> newProg
+	
+rule for_true_loop,
+	miniJava_ASOS.ForStatement(decl, miniJava_ASOS.sd.BooleanValue(b), miniJava_ASOS.sd.Value(), miniJava_ASOS.sd.NullValue())
+	->
+	miniJava_ASOS.ForStatement(decl, self.cond, self.prog, self.body)
+
+rule for_false,
+	miniJava_ASOS.ForStatement(decl, miniJava_ASOS.sd.BooleanValue(b), prog, body)
+	->
+	miniJava_ASOS.sd.NullValue()
+where
+	b == false
+IO
+	miniJava_ASOS.sd.State.popContext() on context
+
+
+rule load_image_path,
+	miniJava_ASOS.LoadImage(path)
+	->
+	miniJava_ASOS.LoadImage(newPath)
+resolve
+	path -> newPath
+	
+rule load_image,
+	miniJava_ASOS.LoadImage(miniJava_ASOS.sd.StringValue(path))
+	->
+	ref
+IO
+	ref = miniJava_ASOS.sd.State.readImage(path) on context
+
+
+
+rule write_image_path,
+	miniJava_ASOS.WriteImage(path, image)
+	->
+	miniJava_ASOS.WriteImage(newPath, image)
+resolve
+	path -> newPath
+	
+rule write_image_image,
+	miniJava_ASOS.WriteImage(miniJava_ASOS.sd.StringValue(path), image)
+	->
+	miniJava_ASOS.WriteImage(miniJava_ASOS.sd.StringValue(path), newImage)
+resolve
+	image -> newImage
+	
+rule write_image,
+	miniJava_ASOS.WriteImage(miniJava_ASOS.sd.StringValue(path), miniJava_ASOS.sd.ArrayRefValue(inst))
+	->
+	miniJava_ASOS.sd.NullValue()
+IO
+	miniJava_ASOS.sd.State.writeImage(path, inst) on context
+
+

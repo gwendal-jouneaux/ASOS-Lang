@@ -1,0 +1,47 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<ecore:EPackage xmi:version="2.0" xmlns:xmi="http://www.omg.org/XMI" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+    xmlns:ecore="http://www.eclipse.org/emf/2002/Ecore" name="html_ASOS" nsURI="http://www.example.org/html_ASOS" nsPrefix="html_ASOS">
+  <eClassifiers xsi:type="ecore:EClass" name="HTMLNodeRoot">
+    <eStructuralFeatures xsi:type="ecore:EReference" name="root" lowerBound="1" eType="#//HTMLNodeBase"
+        containment="true"/>
+  </eClassifiers>
+  <eClassifiers xsi:type="ecore:EClass" name="HTMLNodeBase" abstract="true" interface="true"/>
+  <eClassifiers xsi:type="ecore:EClass" name="HTMLNodeText" eSuperTypes="#//HTMLNodeBase">
+    <eStructuralFeatures xsi:type="ecore:EAttribute" name="content" eType="ecore:EDataType http://www.eclipse.org/emf/2002/Ecore#//EString"/>
+  </eClassifiers>
+  <eClassifiers xsi:type="ecore:EClass" name="HTMLNodeBlockTag" eSuperTypes="#//HTMLNodeBaseTag">
+    <eStructuralFeatures xsi:type="ecore:EReference" name="children" upperBound="-1"
+        eType="#//HTMLNodeBase" containment="true"/>
+  </eClassifiers>
+  <eClassifiers xsi:type="ecore:EClass" name="HTMLNodeBaseTag" abstract="true" interface="true"
+      eSuperTypes="#//HTMLNodeBase">
+    <eStructuralFeatures xsi:type="ecore:EAttribute" name="tag" lowerBound="1" eType="ecore:EDataType http://www.eclipse.org/emf/2002/Ecore#//EString"/>
+    <eStructuralFeatures xsi:type="ecore:EReference" name="attributes" upperBound="-1"
+        eType="#//HTMLNodeAttribute" containment="true"/>
+  </eClassifiers>
+  <eClassifiers xsi:type="ecore:EClass" name="HTMLNodeAttribute" eSuperTypes="#//HTMLNodeBase">
+    <eStructuralFeatures xsi:type="ecore:EAttribute" name="name" lowerBound="1" eType="ecore:EDataType http://www.eclipse.org/emf/2002/Ecore#//EString"/>
+    <eStructuralFeatures xsi:type="ecore:EAttribute" name="value" eType="ecore:EDataType http://www.eclipse.org/emf/2002/Ecore#//EString"/>
+    <eStructuralFeatures xsi:type="ecore:EAttribute" name="type" eType="#//AttributeType"/>
+  </eClassifiers>
+  <eClassifiers xsi:type="ecore:EEnum" name="AttributeType">
+    <eLiterals name="DOUBLE_QUOTED" value="2" literal="&quot;"/>
+    <eLiterals name="UNQUOTED" literal=""/>
+    <eLiterals name="SIMPLE_QUOTED" value="1" literal="'"/>
+  </eClassifiers>
+  <eClassifiers xsi:type="ecore:EClass" name="HTMLNodeEmptyTag" eSuperTypes="#//HTMLNodeBaseTag"/>
+  <eSubpackages name="sd" nsURI="http://www.example.org/html_ASOS/sd" nsPrefix="sd">
+    <eClassifiers xsi:type="ecore:EClass" name="State">
+      <eOperations name="join" eType="ecore:EDataType http://www.eclipse.org/emf/2002/Ecore#//EString">
+        <eParameters name="list">
+          <eGenericType eClassifier="ecore:EDataType http://www.eclipse.org/emf/2002/Ecore#//EEList">
+            <eTypeArguments/>
+          </eGenericType>
+        </eParameters>
+      </eOperations>
+    </eClassifiers>
+    <eClassifiers xsi:type="ecore:EClass" name="StringValue">
+      <eStructuralFeatures xsi:type="ecore:EAttribute" name="value" eType="ecore:EDataType http://www.eclipse.org/emf/2002/Ecore#//EString"/>
+    </eClassifiers>
+  </eSubpackages>
+</ecore:EPackage>

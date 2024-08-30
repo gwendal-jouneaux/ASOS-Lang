@@ -1,0 +1,25 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<?eclipse version="3.0"?>
+
+<!--
+-->
+
+<plugin>
+
+   <extension point="org.eclipse.emf.ecore.generated_package">
+      <!-- @generated html_ASOS -->
+      <package
+            uri="http://www.example.org/html_ASOS"
+            class="html_ASOS.Html_ASOSPackage"
+            genModel="model/html_ASOS.genmodel"/>
+   </extension>
+
+   <extension point="org.eclipse.emf.ecore.generated_package">
+      <!-- @generated html_ASOS -->
+      <package
+            uri="http://www.example.org/html_ASOS/sd"
+            class="html_ASOS.sd.SdPackage"
+            genModel="model/html_ASOS.genmodel"/>
+   </extension>
+
+</plugin>

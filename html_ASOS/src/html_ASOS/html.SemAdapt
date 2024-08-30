@@ -1,0 +1,17 @@
+model "platform=/resource/html_ASOS/model/html_ASOS.ecore" with html_ASOS.sd
+semantics "platform=/resource/html_ASOS/src/html_ASOS/html.AdaptSem"
+context html_ASOS.sd.State
+
+ConditionalLoading{
+	recursive match html_ASOS.HTMLNodeBaseTag(tag, attrs)
+	where self.tag == "script"
+	
+	Before attribute rule remove_js,
+		html_ASOS.HTMLNodeAttribute(name, value, type)
+		->
+		html_ASOS.HTMLNodeAttribute(name, empty, type)
+	where
+		name == "src"
+	bind
+		empty = ""
+}

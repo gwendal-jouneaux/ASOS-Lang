@@ -1,0 +1,17 @@
+model "platform=/resource/html_ASOS/model/html_ASOS.ecore" with html_ASOS.sd
+context html_ASOS.sd.State
+
+rule doctype_eval,
+	html_ASOS.HTMLNodeRoot(root)
+	->
+	html_ASOS.HTMLNodeRoot(newroot)
+resolve
+	root -> newroot
+	
+rule doctype_produce,
+	html_ASOS.HTMLNodeRoot(html_ASOS.sd.StringValue(str))
+	->
+	out
+bind
+	outVal = "<!DOCTYPE html>" + str;
+	out = html_ASOS.sd.StringValue(outVal)

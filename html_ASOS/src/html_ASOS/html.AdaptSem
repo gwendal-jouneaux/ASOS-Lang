@@ -1,0 +1,106 @@
+model "platform=/resource/html_ASOS/model/html_ASOS.ecore" with html_ASOS.sd
+context html_ASOS.sd.State
+
+rule doctype_eval,
+	html_ASOS.HTMLNodeRoot(root)
+	->
+	html_ASOS.HTMLNodeRoot(newroot)
+resolve
+	root -> newroot
+	
+rule doctype_produce,
+	html_ASOS.HTMLNodeRoot(html_ASOS.sd.StringValue(str))
+	->
+	out
+bind
+	outVal = "<!DOCTYPE html>" + str;
+	out = html_ASOS.sd.StringValue(outVal)
+	
+
+rule plaintext,
+	html_ASOS.HTMLNodeText(content)
+	->
+	html_ASOS.sd.StringValue(content)
+
+	
+rule attribute,
+	html_ASOS.HTMLNodeAttribute(name, value, type)
+	->
+	out
+bind
+	outVal = " " + name + "=" + self.type.literal + value + self.type.literal;
+	out = html_ASOS.sd.StringValue(outVal)
+	
+
+rule empty_tag_attr,
+	html_ASOS.HTMLNodeEmptyTag(tag, [attr | attrs])
+	->
+	html_ASOS.HTMLNodeEmptyTag(tag, [newattr | attrs])
+resolve
+	attr -> newattr
+	
+rule empty_tag_val,
+	html_ASOS.HTMLNodeEmptyTag(tag, [html_ASOS.sd.StringValue() | attrs])
+	->
+	html_ASOS.HTMLNodeEmptyTag(tag, attrs)
+
+rule empty_tag_tag,
+	html_ASOS.HTMLNodeEmptyTag(tag, [])
+	->
+	html_ASOS.HTMLNodeEmptyTag(str, [])
+where
+	! html_ASOS.sd.StringValue() match tag
+bind
+	str = html_ASOS.sd.StringValue(tag)
+	
+rule empty_tag_end,
+	html_ASOS.HTMLNodeEmptyTag(html_ASOS.sd.StringValue(tag), attrs)
+	->
+	html_ASOS.sd.StringValue(outStr)
+bind
+	strAttrs = context->html_ASOS.sd.State.join(attrs);
+	outStr = "<" + tag + strAttrs + "/>"
+	
+	
+rule block_tag_attr,
+	html_ASOS.HTMLNodeBlockTag(tag, [attr | attrs], children)
+	->
+	html_ASOS.HTMLNodeBlockTag(tag, [newattr | attrs], children)
+resolve
+	attr -> newattr
+	
+rule block_tag_val,
+	html_ASOS.HTMLNodeBlockTag(tag, [html_ASOS.sd.StringValue() | attrs], children)
+	->
+	html_ASOS.HTMLNodeBlockTag(tag, attrs, children)
+
+rule block_tag_child,
+	html_ASOS.HTMLNodeBlockTag(tag, [], [child | children])
+	->
+	html_ASOS.HTMLNodeBlockTag(tag, [], [newchild | children])
+resolve
+	child -> newchild
+	
+rule block_tag_child_val,
+	html_ASOS.HTMLNodeBlockTag(tag, [], [html_ASOS.sd.StringValue() | children])
+	->
+	html_ASOS.HTMLNodeBlockTag(tag, [], children)
+	
+rule block_tag_prepare,
+	html_ASOS.HTMLNodeBlockTag(tag, [], [])
+	->
+	html_ASOS.HTMLNodeBlockTag(html_ASOS.sd.StringValue(tag), [], [])
+where
+	! html_ASOS.sd.StringValue() match tag
+
+rule block_tag_end,
+	html_ASOS.HTMLNodeBlockTag(html_ASOS.sd.StringValue(tag), attrs, children)
+	->
+	html_ASOS.sd.StringValue(outStr)
+bind
+	strAttr = context->html_ASOS.sd.State.join(attrs);
+	strChildren = context->html_ASOS.sd.State.join(children);
+	outStr = "<" + tag + strAttr + ">" + strChildren + "</" + tag + ">"
+	
+	
+	
